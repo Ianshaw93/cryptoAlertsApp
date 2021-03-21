@@ -1,0 +1,40 @@
+<MainPage>
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            id: price
+            text: ""
+            halign: "right"
+            font_size: 65
+            size_hint: (1, .15)
+
+        GridLayout:
+            cols: 1
+            rows: 3
+
+            Button:
+                id: bitcoinprice
+                size_hint: (.4, .4)
+                font_size: 32
+                text: "Bitcoin"
+                on_press:
+                    root.bitcoinprice()
+                on_release:
+                    root.bad_handle_plot()
+
+
+            Button:
+                id: dotprice
+                size_hint: (.4, .4)
+                font_size: 32
+                text: "Polkadot"
+                on_press: root.dotprice()
+
+            Button:
+                id: adaprice
+                size_hint: (.4, .4)
+                font_size: 32
+                text: "Cardano"
+                on_press: root.adaprice()
