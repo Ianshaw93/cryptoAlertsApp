@@ -1,7 +1,9 @@
 # cryptoAlertsApp
 Crypto Currency Price Alerts App with the GUI created using Kivy and information gathered using the Coingecko API.
 
-Users can view current prices and market charts for cryptocurrencies and add alerts for when price is higher/lower than user defined price.  A notification is sent to the user on their device when target criteria is met.
+This app is still in development.
+
+Users will be able to view current prices and market charts for cryptocurrencies and add alerts for when price is higher/lower than user defined price.  A notification is sent to the user on their device when target criteria is met.
 
 # What I Learned
 
