@@ -9,19 +9,25 @@ from kivy_garden.graph import Graph, MeshLinePlot   # plot handling
 cg = CoinGeckoAPI() #setting up the client
 cg.get_coins_list()
 
+#print(cg.get_price(ids='bitcoin', vs_currencies='gbp'))
 
-def GetCryptoFiatPrice(cryptoCurrency=['bitcoin', 'polkadot', 'cardano'],  fiatCurrency = ['usd', 'gbp']):
+def GetCryptoFiatPrice(cryptoCurrency='bitcoin',  fiatCurrency = 'usd'):
     cryptoFiatPrice = cg.get_price(ids=cryptoCurrency, vs_currencies=fiatCurrency, output_format='pandas')
-    print(cryptoFiatPrice['bitcoin']['usd'])
+    # print(cryptoFiatPrice)
+    cryptoFiatPrice = (cryptoFiatPrice[cryptoCurrency][fiatCurrency])
+    # currency, price = zip(*cryptoFiatPrice.items())
+    # print (price)
     return (cryptoFiatPrice)
 
 def GetHistoricalCryptoPrice(cryptoCurrency='bitcoin', relevant_date='10-11-2020'):
     data = cg.get_coin_history_by_id(id=cryptoCurrency, date=relevant_date, localization='false')
+    print(data)
     return data
 
 
 def GetCoinMarketsVsFiat(fiatCurrency='usd'):
     coin_market = cg.get_coins_markets(vs_currency=fiatCurrency)
+    #print(coin_market)
     df_market=pd.DataFrame(coin_market, columns=['id','current_price', 'high_24h', 'low_24h'])
     df_market.set_index('id', inplace=True)
     print(df_market)
@@ -29,11 +35,28 @@ def GetCoinMarketsVsFiat(fiatCurrency='usd'):
 
 def GetMarketChart(cryptoCurrency='bitcoin',  fiatCurrency = 'usd'):
     MarketChart = cg.get_coin_market_chart_by_id(id=cryptoCurrency, vs_currency=fiatCurrency, days = 1, interval ='hourly', output_format='pandas')
+    #print(MarketChart)
+    #print(MarketChart['prices'])
     MarketChartPrices = MarketChart['prices']
-    #unzip x and y values from Market Chart info
     time_stamp, price = zip(*MarketChartPrices)
-    #conver time-stamp UNIX code to time-date format
+    # #time_date = datetime(*time_stamp[0:6])
+    # print(time_stamp)
+    # time_date = time.strftime("%Y-%m-%d %H:%M:%S", time_stamp)
     time_date = pd.to_datetime(time_stamp, unit='ms')
+    #print(time_date)
+    #time_x_axis = time_datemdates.DateFormatter("%H:%M")
+    # if days >= 7:
+    #     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d/%m')) #for when the dataframe is 7 days or more
+    # else:
+    #     plt.gca().xaxis.set_major_formatter(strftime())
+    # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
+    # #plt.gca().xaxis.set_minor_formatter(mdates.DateFormatter('%y'))
+    # plt.plot(time_date, price)
+    # #x_axis = set(datetime.datetime.strptime((d,'%m/%d/%Y').date() for d in time_date))
+    # plt.title((cryptoCurrency) + '/' + (fiatCurrency) + ' 24hr chart')
+    # plt.ylabel("$ USD")
+    # plt.xlabel("Date")
+    # plt.show()
     return time_date, price
 
 
