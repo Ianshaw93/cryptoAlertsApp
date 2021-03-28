@@ -15,7 +15,7 @@ Screen grab of Bitcoin page with 60000 entered by user for test.
 ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2FIanshaw93%2FD8IBW_gntw.png?alt=media&token=c844a036-821f-415e-bb71-1a780aade1d2)
 
 
-Screen grab of the corresponding alert notification that the market price is less than the target price.
+For the test the user selects the less than button and the screen grab below shows the corresponding alert notification that the market price is less than the target price.
 
 ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2FIanshaw93%2FOF2iZNm8qi.png?alt=media&token=233dc919-852b-4cb1-822b-de34bd7bf153)
 
