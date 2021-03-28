@@ -21,7 +21,7 @@ For the test the user selects the less than button and the screen grab below sho
 
 
 # Future Features
-The page corresponding to each coin will show price charts for 24 hours, 7 days and 30 days; the alarms box shown is a placeholder and will allow users to enter the objective price and whether the alert will function when the price is higher or lower than this price. 
+The page corresponding to each coin will show price charts for 24 hours, 7 days and 30 days; the alerts created by the user will be shown below the more than/less than buttons in a scrollable part of the screen; further coin pages will be added that can be accessed from the main menu; the main menu will show the 24 hr chart,current price for each coin and whether the user has any alarms configured for that particular coin. 
 
 
 # What I Learned
