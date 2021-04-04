@@ -20,11 +20,12 @@ def get_crypto_fiat_price(cryptoCurrency='bitcoin',  fiatCurrency = 'usd'):
     return (crypto_fiat_price)
 
 
-def get_historical_crypto_price(cryptoCurrency='bitcoin', relevant_date='10-11-2020'):
+def get_historical_crypto_price(cryptoCurrency = 'bitcoin',
+                                relevant_date = '10-11-2020'):
     data = cg.get_coin_history_by_id(
-        id=cryptoCurrency,
-        date=relevant_date,
-        localization='false'
+        id = cryptoCurrency,
+        date = relevant_date,
+        localization ='false'
     )
     print(data)
     return data
@@ -42,7 +43,9 @@ def get_coin_markets_vs_fiat(fiatCurrency='usd'):
     return coin_market
 
 
-def get_market_chart(cryptoCurrency='bitcoin',  fiatCurrency = 'usd', chart_period = 1):
+def get_market_chart(cryptoCurrency='bitcoin',
+                     fiatCurrency = 'usd',
+                     chart_period = 1):
     market_chart = cg.get_coin_market_chart_by_id(
         id=cryptoCurrency,
         vs_currency=fiatCurrency,
