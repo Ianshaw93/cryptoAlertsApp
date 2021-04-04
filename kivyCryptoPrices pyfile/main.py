@@ -30,47 +30,59 @@ time_date, price = get_market_chart()
 
 class MainPage(BoxLayout):
     def __init__(self, **kwargs):
-        super(MainPage, self).__init__(**kwargs)      # this is only for if kivy code goes in the py file
-        self.user_price = None #self to use anywhere within programme
+        super(MainPage, self).__init__(**kwargs)
+        self.user_price = None
         self.orientation = 'horizontal'
-
         self.current_coin = ['']
         self.graph_period = 1
         #later in dev the coin names will be read from API
-        bad_graph_btn = Button(text='Bitcoin')
+        bitcoin_page_button = Button(text='Bitcoin')
         #add bind to bitcoin function to set currency to btc,
         #this is then used in the graph function via Coingecko function
-        bad_graph_btn.bind(on_release=self.bitcoin_alerts)
-
-
-        self.add_widget(bad_graph_btn)
+        bitcoin_page_button.bind(on_release=self.bitcoin_alerts)
+        self.add_widget(bitcoin_page_button)
         # tickers to show on the plot
-        self.tickers_on_plot = self.current_coin #get from coin gecko
-
+        self.tickers_on_plot = self.current_coin
         # red, yellow, purple, light blue, green | line colors for plot
-        self.plot_colors = [[1, 1, 0, 1], [1, 0, 0, 1], [1, 0, 1, 1], [0.5, .75, .9, 1], [0, 1, 0.3, 1]]
-
+        self.plot_colors = [[1, 1, 0, 1],
+                            [1, 0, 0, 1],
+                            [1, 0, 1, 1],
+                            [0.5, .75, .9, 1],
+                            [0, 1, 0.3, 1]
+        ]
     def coin_page(self):
         mainview = ModalView(size_hint=(0.75, 0.75))
-        grid = GridLayout(rows = 2, cols = 1, padding=[15, 15, 15, 30])  # left, top, right, bot
+        grid = GridLayout(
+                rows = 2, cols = 1,
+                padding=[15, 15, 15, 30]  # left, top, right, bottom
+        )
         self.alerts_log = []
         self.output_content = []
-
         # Area to contain price graphs located at the top half of the screen.
-        graph_box = BoxLayout(orientation="vertical", size_hint_y=0.5, size_hint_x=.6)
-
+        graph_box = BoxLayout(
+                orientation="vertical",
+                size_hint_y=0.5, size_hint_x=.6
+        )
         # Will contain the alerts below graph
-        alarm_box = GridLayout(cols = 2, size_hint_x=1, size_hint_y=.5)
+        alarm_box = GridLayout(
+                cols = 2,
+                size_hint_x=1, size_hint_y=.5
+        )
         # First row of alerts box to contain current price.
-        self.current_price = coin_gecko.get_crypto_fiat_price(cryptoCurrency=self.current_coin)
-        live_price_text = 'The current price is $' + str(self.current_price)
+        self.current_price = coin_gecko.get_crypto_fiat_price(
+                cryptoCurrency=self.current_coin
+        )
+        live_price_text = 'The current price is $' \
+                          + str(self.current_price)
         live_price_label = Label(text = "", size_hint_x=.5)
         dummy_label = Label(text = live_price_text, size_hint_x=.5)
         alarm_box.add_widget(live_price_label)
         alarm_box.add_widget(dummy_label)
         # Second row of alerts box to contain alerts input box
         set_alarm_label = Label(text = 'Set Target Price: ', size_hint_x = 0.5)
-        self.alarm_textinput = TextInput(multiline=False, text=" ", size_hint_x=0.5)
+        self.alarm_textinput = TextInput(
+                multiline=False, text=" ", size_hint_x=0.5
+        )
         self.alarm_textinput.bind(text = self.on_text)
         alarm_box.add_widget(set_alarm_label)
         alarm_box.add_widget(self.alarm_textinput)
@@ -83,7 +95,7 @@ class MainPage(BoxLayout):
         alarm_button_more_than.bind(on_release=self.alert_callback_more_than)
         # Fourth row of alerts box will contain the alerts log.
         alerts_log_scroll = RecycleView(do_scroll_x=False, do_scroll_y=True)
-        #how to update label to include target price?
+        # how to update label to include target price?
         # self.alerts_log.append(self.user_price)
         # alerts_log_scroll.add_widget(Label(text = str(self.alerts_log)))
         alerts_log_scroll.add_widget(Label(text=("")))
@@ -101,9 +113,8 @@ class MainPage(BoxLayout):
         seven_days_tab.content = self.graph
 
         graph_tabs.add_widget(seven_days_tab)
-        #tp.bind(default_tab=my_default_tab_callback) #selection of tab uses different time period
 
-        # make the actual plot
+        # make the actual plots
         graph_box.add_widget(graph_tabs)
 
         grid.add_widget(graph_box)
@@ -114,10 +125,14 @@ class MainPage(BoxLayout):
         mainview.open()
 
     def price_chart(self):
-        self.plot_dates, self.plot_price = coin_gecko.get_market_chart(cryptoCurrency=self.current_coin, fiatCurrency='usd',
-                                                                       chart_period=self.graph_period)
-        self.graph = coin_gecko.make_plot(self.plot_price, self.plot_dates, self.tickers_on_plot,
-                                          self.plot_colors)
+        self.plot_dates, self.plot_price = coin_gecko.get_market_chart(
+                cryptoCurrency=self.current_coin, fiatCurrency='usd',
+                chart_period=self.graph_period
+        )
+        self.graph = coin_gecko.make_plot(
+                self.plot_price, self.plot_dates,
+                self.tickers_on_plot, self.plot_colors
+        )
 
     def one_day_chart(self):
         self.graph_period = 1
@@ -159,9 +174,15 @@ class MainPage(BoxLayout):
     def alert_popup(self):
         #add popup when target criteria met - perhaps change to email in future
         content=GridLayout(cols = 1, padding = 10)
-        content.add_widget(Label(text='Price is ' + self.alert_symbol + ' $'+ str(self.user_price)))
-        popup = Popup(title = self.current_coin.capitalize() + ' Price Alert',
-                      size_hint=(0.5, 0.3), content=content)
+        content.add_widget(Label(
+                text='Price is ' + self.alert_symbol
+                + ' $'+ str(self.user_price)
+        ))
+        popup = Popup(
+                title = self.current_coin.capitalize()
+                + ' Price Alert',
+                size_hint=(0.5, 0.3), content=content
+        )
         popup.open()
 
     def add_item(self, event):
