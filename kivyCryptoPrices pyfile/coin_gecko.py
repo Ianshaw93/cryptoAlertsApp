@@ -59,19 +59,17 @@ def get_market_chart(cryptoCurrency='bitcoin',
     return time_date, price
 
 
-def make_plot(plot_price, plot_dates, tickers_on_plot, plot_colors):
+def make_plot(plot_price, plot_dates, tickers_on_plot,
+              plot_colors, xlabel='Bitcoin'):
     x = list(range(1, (len(plot_price)+1)))
     y = plot_price
-    #future write logic for ticks, if more than 10k price use 500 for ticks major
+    y_axis_ticks = (max(y)-min(y))/5
     plot = None
-    # make the graph - ticks should be related to the price/change in price over time range
-    # (xlabel = self.current_coin.capitalize() + self.graph_period +' day price'
-    # how to get self and parameters from main.py into coin gecko?
     graph = Graph(
-        xlabel = 'Bitcoin 1 day price', x_ticks_major = 1,
-        y_ticks_minor = 100, y_ticks_major = 1000,
+        xlabel = xlabel, x_ticks_major = 1,
+        y_ticks_major = y_axis_ticks,
         y_grid_label=True, x_grid_label=True,
-        padding=10, x_grid=True, y_grid=True,
+        padding=10, x_grid=False, y_grid=False,
         xmin=min(x), xmax=max(x), ymin=min(y), ymax=max(y)
     )
 
