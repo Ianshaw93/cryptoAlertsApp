@@ -29,7 +29,7 @@ Since this video the app has advanced, now the user can select 24hr or 7 day cha
 The prices are stored in a database and a notification is shown to the user when the alert condition is reached for any of the alerts.
 
 # Future Features
-The main menu will show the 24 hr chart,current price for each coin and whether the user has any alarms configured for that particular coin. 
+The database will be hosted remotely to allow notifications to be sent 24/7 to user; main menu will show the 24 hr chart,current price for each coin and whether the user has any alarms configured for that particular coin. 
 
 # What I Learned
 
