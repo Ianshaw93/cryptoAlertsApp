@@ -20,6 +20,7 @@ For the test the user selects the less than button and the screen grab below sho
 ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2FIanshaw93%2FOF2iZNm8qi.png?alt=media&token=233dc919-852b-4cb1-822b-de34bd7bf153)
 
 Since this video the app has advanced, now the user can select 24hr or 7 day chart for the coin; and the alerts are shown at the bottom of the screen, see photo below for Cardano.
+
 ![image](https://user-images.githubusercontent.com/76686112/118045487-dfa7f400-b36f-11eb-9f5b-e2f26b0fe71c.png)
 
 ![image](https://user-images.githubusercontent.com/76686112/118045691-28f84380-b370-11eb-8239-a022047a3889.png)
