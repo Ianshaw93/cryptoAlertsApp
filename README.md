@@ -19,14 +19,21 @@ For the test the user selects the less than button and the screen grab below sho
 
 ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2FIanshaw93%2FOF2iZNm8qi.png?alt=media&token=233dc919-852b-4cb1-822b-de34bd7bf153)
 
+Since this video the app has advanced, now the user can select 24hr or 7 day chart for the coin; and the alerts are shown at the bottom of the screen, see photo below for Cardano.
+![image](https://user-images.githubusercontent.com/76686112/118045487-dfa7f400-b36f-11eb-9f5b-e2f26b0fe71c.png)
+
+![image](https://user-images.githubusercontent.com/76686112/118045691-28f84380-b370-11eb-8239-a022047a3889.png)
+
+
+The prices are stored in a database and a notification is shown to the user when the alert condition is reached for any of the alerts.
 
 # Future Features
-The page corresponding to each coin will show price charts for 24 hours, 7 days and 30 days; the alerts created by the user will be shown below the more than/less than buttons in a scrollable part of the screen; further coin pages will be added that can be accessed from the main menu; the main menu will show the 24 hr chart,current price for each coin and whether the user has any alarms configured for that particular coin. 
-
+The main menu will show the 24 hr chart,current price for each coin and whether the user has any alarms configured for that particular coin. 
 
 # What I Learned
 
 * How to extract data using an API
 * How to call a separate python file and it's functions into a python file
 * Creating graphs in matplotlib and then converting for kivy
+* Writing to and reading from a database
 * How to use source code through the declaration and usages
