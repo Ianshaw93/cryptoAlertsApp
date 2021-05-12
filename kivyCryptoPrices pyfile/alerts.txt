@@ -1,0 +1,14 @@
+4545;bitcoin;l
+252;bitcoin;m
+545;bitcoin;l
+5454;bitcoin;l
+565;cardano;l
+6565;cardano;l
+1211;ethereum;l
+10;ethereum;m
+544;ethereum;l
+45454;bitcoin;l
+45.45;cardano;l
+454;cardano;l
+5445;bitcoin;l
+1;cardano;l
