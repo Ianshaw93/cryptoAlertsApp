@@ -1,8 +1,9 @@
 import coin_gecko
 from main import MainPage
 from main import ScrollableLabel
+import database as db
 
-def check_alerts():
+def check_alerts(scrollable_label):
     # open txt file
     file = open('alerts.txt', 'r')
 
@@ -23,10 +24,16 @@ def check_alerts():
         )
         
         # send all alerts of a certain coin to the scrollable view on the coin page
-        # current_coin = 'bitcoin'
-        # if coin == current_coin:
-        #     ScrollableLabel.update_chat_history(price_target)
-        #     print('scroll')
+        # receive current_coin from main.py in the future
+        current_coin = 'bitcoin' # test
+        if coin == current_coin:
+            scrollable_label.update_alert_history(price_target)
+            # SendAlerts(price_target)
+            # try calling class not method
+            # ScrollableLabel.update_alert_history(self, alarm_figure=price_target)
+            # ScrollableLabel.update_alert_history(alarm_figure=price_target)
+
+            print('scroll')
 
         if symbol == 'l'and price_current < price_target:
             # alert_popup()
@@ -34,6 +41,7 @@ def check_alerts():
             # how to send pop_up message to popup in main.py?
             popup_message = str(f"{coin.capitalize()} price alert! Current price is less than ${str(price_target)}!")
             MainPage.alert_popup(popup_message)
+            # db.remove_alert
             # main_py = main.MainPage(popup_message)
             # main_py.alert_popup()
             # else: print('less than target not reached')
@@ -45,5 +53,17 @@ def check_alerts():
         # print(str(price_target) + 'vs' + str(price_current))  # test
 
     file.close()
+
+# create an init class & method to send instance to scrollable label
+# class SendAlerts():
+#     def __init__(self, price_target):
+#         # send all alerts of a certain coin to the scrollable view on the coin page
+#         # try calling class not method # scrollable_label is instance in this case
+#         # scrollable_label = ScrollableLabel() # when the init of class is called
+#         scrollable_label.update_alert_history(alarm_figure=price_target)
+#         print("it's working")
+
+
+
 
 # check_alerts()
