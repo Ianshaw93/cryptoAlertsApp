@@ -38,7 +38,7 @@ time_date, price = get_market_chart()
 
 # This class is an improved version of Label
 # Kivy does not provide scrollable label, so we need to create one
-class ScrollableLabel(ScrollView):
+class ScrollableLabel(ScrollView): # no self required to send to this class
     text = StringProperty('')
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -56,7 +56,7 @@ class ScrollableLabel(ScrollView):
     # add new item to alerts log
     def update_alert_history(self, alarm_figure):
         # First add new line and alert price figure to log
-        self.alert_history.text += os.linesep + "$" + alarm_figure
+        self.alert_history.text += os.linesep + "$" + str(alarm_figure)
         self.layout.height = self.alert_history.texture_size[1] + 15
         self.alert_history.height = self.alert_history.texture_size[1]
         self.alert_history.text_size = (self.alert_history.width * 0.98, None)
@@ -74,7 +74,8 @@ class MainPage(BoxLayout):
         self.output_content = []
         self.alert_symbol_log = []
         self.alerts_log_scroll = None
-        self.scroll_label = None
+        self.new_alerts_scrollable_label = None
+        self.new_alerts_scrollable_label = None
         self.coin_alerts_less_than = {}
         self.coin_alerts_more_than = {}
         self.alert_symbol = ""
@@ -144,13 +145,20 @@ class MainPage(BoxLayout):
         alarm_button_more_than = Button(text=">", size_hint_x=1)
         alarm_box.add_widget(alarm_button_less_than)
         alarm_box.add_widget(alarm_button_more_than)
-        # methods called on press of buttons, and then alerts added to log
+        # methods called on press of third row buttons, and then alerts added to log
         alarm_button_less_than.bind(on_release=self.alert_callback_less_than)
         alarm_button_more_than.bind(on_release=self.alert_callback_more_than)
         # Fourth row of alerts box will contain the alerts log.
-        self.scroll_label = ScrollableLabel(size_hint_x=1) #shown as self.history in sentdex tutorial
-        alarm_box.add_widget(self.scroll_label)
+        # self.scroll_label = ScrollableLabel(size_hint_x=1) #shown as self.history in sentdex tutorial
+        # how to use self for input/label while not using self for old alerts
+        # existing alerts
+        scrollable_label = ScrollableLabel(size_hint_x=1) # existing alerts
+        alarm_box.add_widget(scrollable_label)
+        # new alerts
+        self.new_alerts_scrollable_label = ScrollableLabel(size_hint_x=1)
+        alarm_box.add_widget(self.new_alerts_scrollable_label)
         self.price_chart()
+        # Fourth row of alerts box continued
         graph_tabs = TabbedPanel(pos_hint={'center_x': .5, 'center_y': 1})
         graph_tabs.default_tab_text = '24hr'
         graph_tabs.default_tab.bind = self.one_day_chart()
@@ -164,8 +172,11 @@ class MainPage(BoxLayout):
         graph_box.add_widget(graph_tabs)
         grid.add_widget(graph_box)
         grid.add_widget(alarm_box)
+        # grid.add_widget(scrollable_label)
         mainview.add_widget(grid)
         mainview.open()
+        parsedatabase.check_alerts(scrollable_label)
+
 
     def price_chart(self):
         self.plot_dates, self.plot_price = coin_gecko.get_market_chart(
@@ -190,7 +201,7 @@ class MainPage(BoxLayout):
     def bitcoin_alerts(self, event):
         self.current_coin = 'bitcoin'
         self.coin_page()
-        parsedatabase.check_alerts()
+        # parsedatabase.check_alerts()
 
     def cardano_alerts(self, event):
         self.current_coin = 'cardano'
@@ -210,9 +221,20 @@ class MainPage(BoxLayout):
 
     @staticmethod
     def alert_popup(popup_message):
+        print('popup activated')
+        # add popup when target criteria met -
         # perhaps change to email notification in the future
-        content = GridLayout(cols=1, padding=10) 
+        content = GridLayout(cols=1, padding=10) # not being added after going to parsepage??
         content.add_widget(Label(text=popup_message))
+        # content.add_widget(Label(
+        #         text='Price is ' + self.alert_symbol
+        #         + ' $' + str(self.user_price)
+        # ))
+        # popup = Popup(
+        #         title=self.current_coin.capitalize()
+        #         + ' Price Alert',
+        #         size_hint=(0.5, 0.3), content=content
+        # )
         popup = Popup(size_hint=(0.8, 0.3), content=content)
         popup.open()
 
@@ -222,14 +244,20 @@ class MainPage(BoxLayout):
             coin = self.current_coin
             symbol = self.alert_symbol
             db.add_alert(coin, symbol, price_target)
+            # add other formatted constraints - only valid numbers etc
+            # Get text and clear input box
+            # alarm figure similar to message = self.new_message.text # in sentdex tutorial
             alarm_figure = self.alarm_textinput.text
             # clear text inputbox
             self.reset()
-            self.scroll_label.update_alert_history(alarm_figure)
+            self.new_alerts_scrollable_label.update_alert_history(alarm_figure)
+            # need to send scrollable_label into method??
+            # scrollable_label.update_alert_history(alarm_figure) # was self.scroll_label
             self.output_content.append(alarm_figure)
             self.alert_symbol_log.append(self.alert_symbol)
-            self.scroll_label.text += alarm_figure
-            # self.scroll_label.text += formatted
+
+            # scrollable_label.text += alarm_figure
+            self.new_alerts_scrollable_label.text += alarm_figure
             print(self.output_content, self.alert_symbol_log)
         else: print("not working")
 
