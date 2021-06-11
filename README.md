@@ -3,10 +3,18 @@ Crypto Currency Price Alerts App with the GUI created using Kivy and information
 
 This app is still in development.
 
-Users will be able to view current prices and market charts for cryptocurrencies and add alerts for when price is higher/lower than user defined price.  A notification is sent to the user on their device when target criteria is met.
+Users are able to view current prices and market charts for cryptocurrencies and add alerts for when price is higher/lower than user defined price.  A notification is sent to the user on their device when target criteria is met.
 
 # App so Far
-From the main screen users will be able to navigate to any of the crytocurrency pages.  A video demo of the Bitcoin page is shown in the link directly below:
+From the main screen users will be able to navigate to any of the crytocurrency pages.  A video demo of the Cardano page is shown in the link directly below.  
+
+https://user-images.githubusercontent.com/76686112/121649680-b672a480-ca90-11eb-915a-c842a548c399.mp4
+
+This demo shows previous user set alerts that are met (see screenshot of database).  The database is parsed and alerts that are met are notified to the used. 
+
+![image](https://user-images.githubusercontent.com/76686112/121650164-326cec80-ca91-11eb-9b9f-055988cdcd0d.png)
+
+
 
 Video demo of Bitcoin page: https://user-images.githubusercontent.com/76686112/112745618-b7bc2700-8fa1-11eb-8623-0170ce87ad82.mp4
 
