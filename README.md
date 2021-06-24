@@ -14,11 +14,6 @@ This demo shows previous user set alerts that are met (see screenshot of databas
 
 ![image](https://user-images.githubusercontent.com/76686112/121650164-326cec80-ca91-11eb-9b9f-055988cdcd0d.png)
 
-![image](https://user-images.githubusercontent.com/76686112/118045487-dfa7f400-b36f-11eb-9f5b-e2f26b0fe71c.png)
-
-![image](https://user-images.githubusercontent.com/76686112/118045691-28f84380-b370-11eb-8239-a022047a3889.png)
-
-
 The prices are stored in a database and a notification is shown to the user when the alert condition is reached for any of the alerts.
 
 # Future Features
