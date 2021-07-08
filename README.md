@@ -28,3 +28,4 @@ The database will be hosted remotely to allow notifications to be sent 24/7 to u
 * Creating graphs in matplotlib and then converting for kivy
 * Writing to and reading from a database
 * How to use source code through the declaration and usages
+* Built on my experience of using classes and instances i.e. Object Orientated principles
