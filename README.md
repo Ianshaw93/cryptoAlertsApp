@@ -8,13 +8,11 @@ From the main screen users will be able to navigate to any of the crytocurrency 
 
 https://user-images.githubusercontent.com/76686112/121649680-b672a480-ca90-11eb-915a-c842a548c399.mp4
 
-This demo shows previous user set alerts that are met (see screenshot of database).  The database is parsed and alerts that are met are notified to the used. 
+This demo shows previous user set alerts that are met (see screenshot of database).  The database is parsed and alerts that are met are notified to the used.  The m/l (more than/less than) column in the database is whether the price alert will action when the target price is more/less than the current price.  
 
 ![image](https://user-images.githubusercontent.com/76686112/121650164-326cec80-ca91-11eb-9b9f-055988cdcd0d.png)
 
-The prices are stored in a database and a notification is shown to the user when the alert condition is reached for any of the alerts.
-
-![image](https://user-images.githubusercontent.com/76686112/123323580-9978af80-d52d-11eb-8b23-999762807ce8.png)
+The prices are stored in the database and a notification is shown to the user when the alert condition is reached for any of the alerts.
 
 # Future Features
 The database will be hosted remotely to allow notifications to be sent 24/7 to user; main menu will show the 24 hr chart,current price for each coin and whether the user has any alarms configured for that particular coin. 
